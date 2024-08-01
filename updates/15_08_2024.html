@@ -23,6 +23,72 @@
             background-color: #2f648e;
         }
     </style>
+
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
+    <script>
+        const firebaseConfig = {
+          apiKey: "AIzaSyAxv4yXfM25s23PpCUiw_g6NVTCrY4QdZg",
+          authDomain: "myco-updates.firebaseapp.com",
+          projectId: "myco-updates",
+          storageBucket: "myco-updates.appspot.com",
+          messagingSenderId: "336837681547",
+          appId: "1:336837681547:web:eedd8e394366ced1e98f8e"
+        };
+
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        function updateTasks(date) {
+            const tasks = {
+                emp_punch_in_1: document.getElementById('emp_punch_in_1').checked,
+                emp_punch_out_1: document.getElementById('emp_punch_out_1').checked,
+                emp_punch_in_2: document.getElementById('emp_punch_in_2').checked,
+                emp_punch_out_2: document.getElementById('emp_punch_out_2').checked,
+                emp_break_start_1: document.getElementById('emp_break_start_1').checked,
+                emp_break_end_1: document.getElementById('emp_break_end_1').checked,
+                emp_break_start_2: document.getElementById('emp_break_start_2').checked,
+                emp_break_end_2: document.getElementById('emp_break_end_2').checked,
+                face_punch_in_1: document.getElementById('face_punch_in_1').checked,
+                face_punch_out_1: document.getElementById('face_punch_out_1').checked,
+                face_punch_in_2: document.getElementById('face_punch_in_2').checked,
+                face_punch_out_2: document.getElementById('face_punch_out_2').checked,
+                face_break_start_1: document.getElementById('face_break_start_1').checked,
+                face_break_end_1: document.getElementById('face_break_end_1').checked,
+                face_break_start_2: document.getElementById('face_break_start_2').checked,
+                face_break_end_2: document.getElementById('face_break_end_2').checked
+            };
+            localStorage.setItem(`tasks_${date}`, JSON.stringify(tasks));
+        }
+
+        function loadTasks(date) {
+            const tasks = JSON.parse(localStorage.getItem(`tasks_${date}`));
+            if (tasks) {
+                document.getElementById('emp_punch_in_1').checked = tasks.emp_punch_in_1;
+                document.getElementById('emp_punch_out_1').checked = tasks.emp_punch_out_1;
+                document.getElementById('emp_punch_in_2').checked = tasks.emp_punch_in_2;
+                document.getElementById('emp_punch_out_2').checked = tasks.emp_punch_out_2;
+                document.getElementById('emp_break_start_1').checked = tasks.emp_break_start_1;
+                document.getElementById('emp_break_end_1').checked = tasks.emp_break_end_1;
+                document.getElementById('emp_break_start_2').checked = tasks.emp_break_start_2;
+                document.getElementById('emp_break_end_2').checked = tasks.emp_break_end_2;
+                document.getElementById('face_punch_in_1').checked = tasks.face_punch_in_1;
+                document.getElementById('face_punch_out_1').checked = tasks.face_punch_out_1;
+                document.getElementById('face_punch_in_2').checked = tasks.face_punch_in_2;
+                document.getElementById('face_punch_out_2').checked = tasks.face_punch_out_2;
+                document.getElementById('face_break_start_1').checked = tasks.face_break_start_1;
+                document.getElementById('face_break_end_1').checked = tasks.face_break_end_1;
+                document.getElementById('face_break_start_2').checked = tasks.face_break_start_2;
+                document.getElementById('face_break_end_2').checked = tasks.face_break_end_2;
+            }
+        }
+
+        window.onload = function() {
+            loadTasks('date3');
+        };
+    </script>
 </head>
 <body>
 
@@ -123,55 +189,6 @@
     </div>
 </div>
 
-<script>
-    function updateTasks(date) {
-        const tasks = {
-            emp_punch_in_1: document.getElementById('emp_punch_in_1').checked,
-            emp_punch_out_1: document.getElementById('emp_punch_out_1').checked,
-            emp_punch_in_2: document.getElementById('emp_punch_in_2').checked,
-            emp_punch_out_2: document.getElementById('emp_punch_out_2').checked,
-            emp_break_start_1: document.getElementById('emp_break_start_1').checked,
-            emp_break_end_1: document.getElementById('emp_break_end_1').checked,
-            emp_break_start_2: document.getElementById('emp_break_start_2').checked,
-            emp_break_end_2: document.getElementById('emp_break_end_2').checked,
-            face_punch_in_1: document.getElementById('face_punch_in_1').checked,
-            face_punch_out_1: document.getElementById('face_punch_out_1').checked,
-            face_punch_in_2: document.getElementById('face_punch_in_2').checked,
-            face_punch_out_2: document.getElementById('face_punch_out_2').checked,
-            face_break_start_1: document.getElementById('face_break_start_1').checked,
-            face_break_end_1: document.getElementById('face_break_end_1').checked,
-            face_break_start_2: document.getElementById('face_break_start_2').checked,
-            face_break_end_2: document.getElementById('face_break_end_2').checked
-        };
-        localStorage.setItem(`tasks_${date}`, JSON.stringify(tasks));
-    }
-
-    function loadTasks(date) {
-        const tasks = JSON.parse(localStorage.getItem(`tasks_${date}`));
-        if (tasks) {
-            document.getElementById('emp_punch_in_1').checked = tasks.emp_punch_in_1;
-            document.getElementById('emp_punch_out_1').checked = tasks.emp_punch_out_1;
-            document.getElementById('emp_punch_in_2').checked = tasks.emp_punch_in_2;
-            document.getElementById('emp_punch_out_2').checked = tasks.emp_punch_out_2;
-            document.getElementById('emp_break_start_1').checked = tasks.emp_break_start_1;
-            document.getElementById('emp_break_end_1').checked = tasks.emp_break_end_1;
-            document.getElementById('emp_break_start_2').checked = tasks.emp_break_start_2;
-            document.getElementById('emp_break_end_2').checked = tasks.emp_break_end_2;
-            document.getElementById('face_punch_in_1').checked = tasks.face_punch_in_1;
-            document.getElementById('face_punch_out_1').checked = tasks.face_punch_out_1;
-            document.getElementById('face_punch_in_2').checked = tasks.face_punch_in_2;
-            document.getElementById('face_punch_out_2').checked = tasks.face_punch_out_2;
-            document.getElementById('face_break_start_1').checked = tasks.face_break_start_1;
-            document.getElementById('face_break_end_1').checked = tasks.face_break_end_1;
-            document.getElementById('face_break_start_2').checked = tasks.face_break_start_2;
-            document.getElementById('face_break_end_2').checked = tasks.face_break_end_2;
-        }
-    }
-
-    window.onload = function() {
-        loadTasks('15_08_2024');
-    };
-</script>
 
 </body>
 </html>

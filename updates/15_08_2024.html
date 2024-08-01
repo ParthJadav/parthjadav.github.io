@@ -34,37 +34,40 @@
           storageBucket: "myco-updates.appspot.com",
           messagingSenderId: "336837681547",
           appId: "1:336837681547:web:eedd8e394366ced1e98f8e"
-        };
+      };
 
 
         // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
+      firebase.initializeApp(firebaseConfig);
+      const database = firebase.database();
 
-        function updateTasks(date) {
-            const tasks = {
-                emp_punch_in_1: document.getElementById('emp_punch_in_1').checked,
-                emp_punch_out_1: document.getElementById('emp_punch_out_1').checked,
-                emp_punch_in_2: document.getElementById('emp_punch_in_2').checked,
-                emp_punch_out_2: document.getElementById('emp_punch_out_2').checked,
-                emp_break_start_1: document.getElementById('emp_break_start_1').checked,
-                emp_break_end_1: document.getElementById('emp_break_end_1').checked,
-                emp_break_start_2: document.getElementById('emp_break_start_2').checked,
-                emp_break_end_2: document.getElementById('emp_break_end_2').checked,
-                face_punch_in_1: document.getElementById('face_punch_in_1').checked,
-                face_punch_out_1: document.getElementById('face_punch_out_1').checked,
-                face_punch_in_2: document.getElementById('face_punch_in_2').checked,
-                face_punch_out_2: document.getElementById('face_punch_out_2').checked,
-                face_break_start_1: document.getElementById('face_break_start_1').checked,
-                face_break_end_1: document.getElementById('face_break_end_1').checked,
-                face_break_start_2: document.getElementById('face_break_start_2').checked,
-                face_break_end_2: document.getElementById('face_break_end_2').checked
-            };
-            localStorage.setItem(`tasks_${date}`, JSON.stringify(tasks));
-        }
+      function updateTasks(date) {
+        const tasks = {
+            emp_punch_in_1: document.getElementById('emp_punch_in_1').checked,
+            emp_punch_out_1: document.getElementById('emp_punch_out_1').checked,
+            emp_punch_in_2: document.getElementById('emp_punch_in_2').checked,
+            emp_punch_out_2: document.getElementById('emp_punch_out_2').checked,
+            emp_break_start_1: document.getElementById('emp_break_start_1').checked,
+            emp_break_end_1: document.getElementById('emp_break_end_1').checked,
+            emp_break_start_2: document.getElementById('emp_break_start_2').checked,
+            emp_break_end_2: document.getElementById('emp_break_end_2').checked,
+            face_punch_in_1: document.getElementById('face_punch_in_1').checked,
+            face_punch_out_1: document.getElementById('face_punch_out_1').checked,
+            face_punch_in_2: document.getElementById('face_punch_in_2').checked,
+            face_punch_out_2: document.getElementById('face_punch_out_2').checked,
+            face_break_start_1: document.getElementById('face_break_start_1').checked,
+            face_break_end_1: document.getElementById('face_break_end_1').checked,
+            face_break_start_2: document.getElementById('face_break_start_2').checked,
+            face_break_end_2: document.getElementById('face_break_end_2').checked
+        };
+        firebase.database().ref('tasks/' + date).set(tasks);
+        disableCheckedTasks();
+    }
 
-        function loadTasks(date) {
-            const tasks = JSON.parse(localStorage.getItem(`tasks_${date}`));
+    function loadTasks(date) {
+        const taskRef = firebase.database().ref('tasks/' + date);
+        taskRef.on('value', (snapshot) => {
+            const tasks = snapshot.val();
             if (tasks) {
                 document.getElementById('emp_punch_in_1').checked = tasks.emp_punch_in_1;
                 document.getElementById('emp_punch_out_1').checked = tasks.emp_punch_out_1;
@@ -83,11 +86,24 @@
                 document.getElementById('face_break_start_2').checked = tasks.face_break_start_2;
                 document.getElementById('face_break_end_2').checked = tasks.face_break_end_2;
             }
-        }
+            disableCheckedTasks();
+        });
+    }
 
-        window.onload = function() {
-            loadTasks('date3');
-        };
+    function disableCheckedTasks() {
+        const taskIds = ['emp_punch_in_1','emp_punch_out_1','emp_punch_in_2','emp_punch_out_2','emp_break_start_1','emp_break_end_1','emp_break_start_2','emp_break_end_2','face_punch_in_1','face_punch_out_1','face_punch_in_2','face_punch_out_2','face_break_start_1','face_break_end_1','face_break_start_2','face_break_end_2'];
+        taskIds.forEach(id => {
+            const task = document.getElementById(id);
+            if (task.checked) {
+                task.disabled = true;
+            }
+        });
+    }
+
+
+    window.onload = function() {
+        loadTasks('date3');
+    };
     </script>
 </head>
 <body>

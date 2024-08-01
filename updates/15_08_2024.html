@@ -35,38 +35,38 @@
                     <fieldset>
                         <legend>Punch In & Punch Out</legend>
                         <div class="form__group">
-                            <input type="checkbox" id="emp_punch_in_1">
+                            <input type="checkbox" id="emp_punch_in_1" onclick="updateTasks('emp_punch_in_1')">
                             <label for="emp_punch_in_1">Punch In - Live</label>
                         </div>
                         <div class="form__group">
-                            <input type="checkbox" id="emp_punch_out_1">
+                            <input type="checkbox" id="emp_punch_out_1" onclick="updateTasks('emp_punch_out_1')">
                             <label for="emp_punch_out_1">Punch Out - Live</label>
                         </div>
                         <div class="form__group">
-                            <input type="checkbox" id="emp_punch_in_2">
+                            <input type="checkbox" id="emp_punch_in_2" onclick="updateTasks('emp_punch_in_2')">
                             <label for="emp_punch_in_2">Punch In - Sync</label>
                         </div>
                         <div class="form__group">
-                            <input type="checkbox" id="emp_punch_out_2">
+                            <input type="checkbox" id="emp_punch_out_2" onclick="updateTasks('emp_punch_out_2')">
                             <label for="emp_punch_out_2">Punch Out - Sync</label>
                         </div>
                     </fieldset>
                     <fieldset>
                         <legend>Break Start & Break End</legend>
                         <div class="form__group">
-                            <input type="checkbox" id="emp_break_start_1">
+                            <input type="checkbox" id="emp_break_start_1" onclick="updateTasks('emp_break_start_1')">
                             <label for="emp_break_start_1">Break Start - Live</label>
                         </div>
                         <div class="form__group">
-                            <input type="checkbox" id="emp_break_end_1">
+                            <input type="checkbox" id="emp_break_end_1" onclick="updateTasks('emp_break_end_1')">
                             <label for="emp_break_end_1">Break End - Live</label>
                         </div>
                         <div class="form__group">
-                            <input type="checkbox" id="emp_break_start_2">
+                            <input type="checkbox" id="emp_break_start_2" onclick="updateTasks('emp_break_start_2')">
                             <label for="emp_break_start_2">Break Start - Sync</label>
                         </div>
                         <div class="form__group">
-                            <input type="checkbox" id="emp_break_end_2">
+                            <input type="checkbox" id="emp_break_end_2" onclick="updateTasks('emp_break_end_2')">
                             <label for="emp_break_end_2">Break End - Sync</label>
                         </div>
                     </fieldset>
@@ -82,38 +82,38 @@
                     <fieldset>
                         <legend>Punch In & Punch Out</legend>
                         <div class="form__group">
-                            <input type="checkbox" id="face_punch_in_1">
+                            <input type="checkbox" id="face_punch_in_1" onclick="updateTasks('face_punch_in_1')">
                             <label for="face_punch_in_1">Punch In - Live</label>
                         </div>
                         <div class="form__group">
-                            <input type="checkbox" id="face_punch_out_1">
+                            <input type="checkbox" id="face_punch_out_1" onclick="updateTasks('face_punch_out_1')">
                             <label for="face_punch_out_1">Punch Out - Live</label>
                         </div>
                         <div class="form__group">
-                            <input type="checkbox" id="face_punch_in_2">
+                            <input type="checkbox" id="face_punch_in_2" onclick="updateTasks('face_punch_in_2')">
                             <label for="face_punch_in_2">Punch In - Sync</label>
                         </div>
                         <div class="form__group">
-                            <input type="checkbox" id="face_punch_out_2">
+                            <input type="checkbox" id="face_punch_out_2" onclick="updateTasks('face_punch_out_2')">
                             <label for="face_punch_out_2">Punch Out - Sync</label>
                         </div>
                     </fieldset>
                     <fieldset>
                         <legend>Break Start & Break End</legend>
                         <div class="form__group">
-                            <input type="checkbox" id="face_break_start_1">
+                            <input type="checkbox" id="face_break_start_1" onclick="updateTasks('face_break_start_1')">
                             <label for="face_break_start_1">Break Start - Live</label>
                         </div>
                         <div class="form__group">
-                            <input type="checkbox" id="face_break_end_1">
+                            <input type="checkbox" id="face_break_end_1" onclick="updateTasks('face_break_end_1')">
                             <label for="face_break_end_1">Break End - Live</label>
                         </div>
                         <div class="form__group">
-                            <input type="checkbox" id="face_break_start_2">
+                            <input type="checkbox" id="face_break_start_2" onclick="updateTasks('face_break_start_2')">
                             <label for="face_break_start_2">Break Start - Sync</label>
                         </div>
                         <div class="form__group">
-                            <input type="checkbox" id="face_break_end_2">
+                            <input type="checkbox" id="face_break_end_2" onclick="updateTasks('face_break_end_2')">
                             <label for="face_break_end_2">Break End - Sync</label>
                         </div>
                     </fieldset>
@@ -123,9 +123,55 @@
     </div>
 </div>
 
-<!-- partial:index.partial.html -->
+<script>
+    function updateTasks(date) {
+        const tasks = {
+            emp_punch_in_1: document.getElementById('emp_punch_in_1').checked,
+            emp_punch_out_1: document.getElementById('emp_punch_out_1').checked,
+            emp_punch_in_2: document.getElementById('emp_punch_in_2').checked,
+            emp_punch_out_2: document.getElementById('emp_punch_out_2').checked,
+            emp_break_start_1: document.getElementById('emp_break_start_1').checked,
+            emp_break_end_1: document.getElementById('emp_break_end_1').checked,
+            emp_break_start_2: document.getElementById('emp_break_start_2').checked,
+            emp_break_end_2: document.getElementById('emp_break_end_2').checked,
+            face_punch_in_1: document.getElementById('face_punch_in_1').checked,
+            face_punch_out_1: document.getElementById('face_punch_out_1').checked,
+            face_punch_in_2: document.getElementById('face_punch_in_2').checked,
+            face_punch_out_2: document.getElementById('face_punch_out_2').checked,
+            face_break_start_1: document.getElementById('face_break_start_1').checked,
+            face_break_end_1: document.getElementById('face_break_end_1').checked,
+            face_break_start_2: document.getElementById('face_break_start_2').checked,
+            face_break_end_2: document.getElementById('face_break_end_2').checked
+        };
+        localStorage.setItem(`tasks_${date}`, JSON.stringify(tasks));
+    }
 
-<!-- partial -->
+    function loadTasks(date) {
+        const tasks = JSON.parse(localStorage.getItem(`tasks_${date}`));
+        if (tasks) {
+            document.getElementById('emp_punch_in_1').checked = tasks.emp_punch_in_1;
+            document.getElementById('emp_punch_out_1').checked = tasks.emp_punch_out_1;
+            document.getElementById('emp_punch_in_2').checked = tasks.emp_punch_in_2;
+            document.getElementById('emp_punch_out_2').checked = tasks.emp_punch_out_2;
+            document.getElementById('emp_break_start_1').checked = tasks.emp_break_start_1;
+            document.getElementById('emp_break_end_1').checked = tasks.emp_break_end_1;
+            document.getElementById('emp_break_start_2').checked = tasks.emp_break_start_2;
+            document.getElementById('emp_break_end_2').checked = tasks.emp_break_end_2;
+            document.getElementById('face_punch_in_1').checked = tasks.face_punch_in_1;
+            document.getElementById('face_punch_out_1').checked = tasks.face_punch_out_1;
+            document.getElementById('face_punch_in_2').checked = tasks.face_punch_in_2;
+            document.getElementById('face_punch_out_2').checked = tasks.face_punch_out_2;
+            document.getElementById('face_break_start_1').checked = tasks.face_break_start_1;
+            document.getElementById('face_break_end_1').checked = tasks.face_break_end_1;
+            document.getElementById('face_break_start_2').checked = tasks.face_break_start_2;
+            document.getElementById('face_break_end_2').checked = tasks.face_break_end_2;
+        }
+    }
+
+    window.onload = function() {
+        loadTasks('date3');
+    };
+</script>
 
 </body>
 </html>

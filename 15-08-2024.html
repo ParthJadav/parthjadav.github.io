@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks</title>
+</head>
+<body>
+    <h1>Employee App</h1>
+    <ul id="task-list">
+        <li><input type="checkbox" id="task1" onclick="updateTasks('date1')"> Live - Punch In</li>
+        <li><input type="checkbox" id="task2" onclick="updateTasks('date1')"> Live - Punch Out</li>
+        <li><input type="checkbox" id="task3" onclick="updateTasks('date1')"> Sync - Punch In</li>
+        <li><input type="checkbox" id="task4" onclick="updateTasks('date1')"> Sync - Punch Out</li>
+    </ul>
+
+    <script>
+        function updateTasks(date) {
+            const tasks = {
+                task1: document.getElementById('task1').checked,
+                task2: document.getElementById('task2').checked,
+                task3: document.getElementById('task3').checked,
+                task3: document.getElementById('task4').checked
+            };
+            localStorage.setItem(`tasks_${date}`, JSON.stringify(tasks));
+        }
+
+        function loadTasks(date) {
+            const tasks = JSON.parse(localStorage.getItem(`tasks_${date}`));
+            if (tasks) {
+                document.getElementById('task1').checked = tasks.task1;
+                document.getElementById('task2').checked = tasks.task2;
+                document.getElementById('task3').checked = tasks.task3;
+                document.getElementById('task4').checked = tasks.task3;
+            }
+        }
+
+        window.onload = function() {
+            loadTasks('date1');
+        };
+    </script>
+</body>
+</html>

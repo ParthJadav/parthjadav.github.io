@@ -60,7 +60,11 @@
             face_break_start_2: document.getElementById('face_break_start_2').checked,
             face_break_end_2: document.getElementById('face_break_end_2').checked
         };
-        firebase.database().ref('tasks/' + date).set(tasks);
+        firebase.database().ref('tasks/' + date).set(tasks).then(() => {
+                console.log('Data saved successfully.');
+            }).catch((error) => {
+                console.error('Error saving data: ', error);
+            });
         disableCheckedTasks();
     }
 
